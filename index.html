@@ -1,1 +1,82 @@
-Hello world
+<!doctype html>
+<html lang="en">
+<head>
+	<title>DIND</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>	
+		html, body {
+			font-family: "Lucida Console", sans-serif;
+		}
+		
+		body {
+			margin: 0;
+		}
+		
+		#container {
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		#next-session {
+			color: #383838;
+			font-size: 2em;
+		}
+		
+		#time-remaining {
+			color: #505050;
+		}
+		
+		.unit {
+			color: #808080;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div>Next session:</div>
+		<div id="next-session">11/11/2021 06:30 PM</div>
+		<div id="time-remaining">
+			<span id="days">05</span> <span class="unit">days</span>
+			<span id="hours">04</span> <span class="unit">hours</span>
+			<span id="minutes">47</span> <span class="unit">minutes</span>
+			<span id="seconds">13</span> <span class="unit">seconds</span>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
+	<script>
+		(() => {
+			const nextSession = luxon.DateTime.fromFormat(
+				document.getElementById('next-session').innerText, 
+				"MM/dd/yyyy hh:mm a"
+			);
+			
+			const days = document.getElementById('days');
+			const hours = document.getElementById('hours');
+			const minutes = document.getElementById('minutes');
+			const seconds = document.getElementById('seconds');
+			
+			function pad(str, num) {
+				return str.padStart(num, '0');
+			}
+			
+			const interval = setInterval(() => {
+				const diff = nextSession.diffNow(["days", "hours", "minutes", "seconds"]).toObject();
+				
+				if(diff.seconds < 0) {
+					clearInterval(interval);
+					document.getElementById('time-remaining').innerText = "It's session time!";
+				} else {
+					days.innerText = pad('' + diff.days, 2);
+					hours.innerText = pad('' + diff.hours, 2);
+					minutes.innerText = pad('' + diff.minutes, 2);
+					seconds.innerText = pad('' + Math.floor(diff.seconds), 2);
+				}
+			}, 1000);
+		})();
+	</script>
+</body>
+</html>
