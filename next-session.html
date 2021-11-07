@@ -4,9 +4,14 @@
 	<title>Next Session Countdown</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>	
+	<style>
+		@font-face {
+			font-family: "Roboto Mono";
+			src: url("assets/RobotoMono-Regular.ttf") format("truetype");
+		}
+	
 		html, body {
-			font-family: "Lucida Console", sans-serif;
+			font-family: "Roboto Mono", sans-serif;
 		}
 		
 		body {
@@ -57,10 +62,10 @@
 		<div>Next session:</div>
 		<div id="next-session">11/11/2021 06:30 PM</div>
 		<div id="time-remaining">
-			<div><span id="days">05</span> <span class="unit">days</span></div>
-			<div><span id="hours">04</span> <span class="unit">hours</span></div>
-			<div><span id="minutes">47</span> <span class="unit">minutes</span></div>
-			<div><span id="seconds">13</span> <span class="unit">seconds</span></div>
+			<div><span id="days">00</span> <span class="unit">days</span></div>
+			<div><span id="hours">00</span> <span class="unit">hours</span></div>
+			<div><span id="minutes">00</span> <span class="unit">minutes</span></div>
+			<div><span id="seconds">00</span> <span class="unit">seconds</span></div>
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
