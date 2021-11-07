@@ -24,14 +24,31 @@
 		#next-session {
 			color: #383838;
 			font-size: 2em;
+			margin: 8px;
 		}
 		
 		#time-remaining {
 			color: #505050;
+			display: flex;
+			flex-direction: row;
+		}
+		
+		#time-remaining > div {
+			margin: 4px;
 		}
 		
 		.unit {
 			color: #808080;
+		}
+		
+		@media (max-width: 500px) {
+			#next-session {
+				font-size: 1.5em;
+			}
+			
+			#time-remaining {
+				flex-direction: column;
+			}
 		}
 	</style>
 </head>
@@ -40,10 +57,10 @@
 		<div>Next session:</div>
 		<div id="next-session">11/11/2021 06:30 PM</div>
 		<div id="time-remaining">
-			<span id="days">05</span> <span class="unit">days</span>
-			<span id="hours">04</span> <span class="unit">hours</span>
-			<span id="minutes">47</span> <span class="unit">minutes</span>
-			<span id="seconds">13</span> <span class="unit">seconds</span>
+			<div><span id="days">05</span> <span class="unit">days</span></div>
+			<div><span id="hours">04</span> <span class="unit">hours</span></div>
+			<div><span id="minutes">47</span> <span class="unit">minutes</span></div>
+			<div><span id="seconds">13</span> <span class="unit">seconds</span></div>
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
